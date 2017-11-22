@@ -63,6 +63,8 @@ public class JpaUtil {
 
     public static void main(String[] args) {
         EntityManager em = JpaUtil.getEntityManager();
+        
+        System.exit(0);
     }
 
 }

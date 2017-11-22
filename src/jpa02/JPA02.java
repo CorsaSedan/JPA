@@ -5,6 +5,9 @@
  */
 package jpa02;
 
+import dao.ClienteDao;
+import model.Cliente;
+
 /**
  *
  * @author cristhian_anacleto
@@ -15,7 +18,10 @@ public class JPA02 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Cliente cliente = new Cliente(1L, "nome");
+        ClienteDao.save(cliente);
+        
+        System.exit(0);
     }
     
 }
