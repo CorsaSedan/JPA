@@ -9,6 +9,6 @@ package dao;
  *
  * @author cristhian_anacleto
  */
-public class iDao {
+public interface iDao {
     
 }

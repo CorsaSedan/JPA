@@ -7,6 +7,7 @@ package jpa02;
 
 import dao.ClienteDao;
 import model.Cliente;
+import model.Telefone;
 
 /**
  *
@@ -18,8 +19,13 @@ public class JPA02 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Cliente cliente = new Cliente(1L, "nome");
+        Cliente cliente = new Cliente();
+        cliente.setNome("Astolfo");
         ClienteDao.save(cliente);
+        
+        Cliente clienteTelefone = ClienteDao.findById(1);
+        clienteTelefone.getListaTelefone().add(new Telefone("4002-8922", clienteTelefone));
+        ClienteDao.save(clienteTelefone);
         
         System.exit(0);
     }

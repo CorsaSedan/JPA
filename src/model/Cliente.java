@@ -6,12 +6,16 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -19,18 +23,21 @@ import javax.persistence.Id;
  */
 @Entity
 public class Cliente implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @Column(unique = true)
     private String nome;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Telefone> listaTelefone = new ArrayList();
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome) {
+    public Cliente(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -43,12 +50,20 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
-    public Long getId() {
-        return id;
+    public int getId() {
+        return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public List<Telefone> getListaTelefone() {
+        return listaTelefone;
+    }
+
+    public void setListaTelefone(List<Telefone> listaTelefone) {
+        this.listaTelefone = listaTelefone;
     }
 
     @Override
@@ -81,6 +96,6 @@ public class Cliente implements Serializable {
     public String toString() {
         return "Cliente{" + "id=" + id + ", nome=" + nome + '}';
     }
-    
-    
+
+
 }
